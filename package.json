@@ -1,0 +1,49 @@
+{
+  "name": "vue3-project",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "lint": "eslint --ext .js,.vue,test/ src/",
+    "prepare": "husky install",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^0.25.0",
+    "eslint": "^8.9.0",
+    "eslint-plugin-vue": "^8.4.1",
+    "pinia": "^2.0.11",
+    "vue": "^3.2.25",
+    "vue-router": "4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.2.0",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^7.0.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^2.5.1",
+    "sass": "^1.49.7",
+    "unplugin-auto-import": "^0.5.11",
+    "vite": "^2.8.0",
+    "vue-global-api": "^0.4.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "FORCE_COLOR=1 node script/verify-commit.js",
+      "pre-push": "npm test"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,.vue}": "eslint",
+    "test/**/*.{js,.vue}": "eslint",
+    "*.css": "stylelint",
+    "*.html": "htmlhint"
+  }
+}
