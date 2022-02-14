@@ -1,5 +1,5 @@
 /**
- * 获取所有api文件下的请求函数
+ * 获取api文件下的请求函数
  * @returns 请求函数
  */
 const getApi = (funName) => {
