@@ -2,9 +2,9 @@
  * 获取api文件下的请求函数
  * @returns 请求函数
  */
-const getApi = (funName) => {
+const getApi = (funName:string) => {
   const api = import.meta.globEager('../api/*.js')
-  const apiFunc = null
+  let apiFunc = null
   for (const key in api) {
     if (Object.prototype.hasOwnProperty.call(api, key)) {
       for (const a in api[key]) {

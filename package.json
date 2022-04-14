@@ -5,7 +5,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "lint": "eslint --ext .js,.vue,test/ src/",
+    "lint": "eslint src --fix --ext .js,.ts,.jsx,.tsx,.vue",
     "prepare": "husky install",
     "preview": "vite preview"
   },
@@ -14,12 +14,16 @@
     "eslint": "^8.9.0",
     "eslint-plugin-vue": "^8.4.1",
     "pinia": "^2.0.11",
+    "unplugin-vue-components": "^0.19.2",
     "vue": "^3.2.25",
     "vue-router": "4"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
     "@vitejs/plugin-vue": "^2.2.0",
-    "@vue/eslint-config-airbnb": "^5.0.2",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^10.0.0",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.20.2",
@@ -41,9 +45,10 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,.vue}": "eslint",
-    "test/**/*.{js,.vue}": "eslint",
-    "*.css": "stylelint",
-    "*.html": "htmlhint"
+    "*.{vue,js,ts,tsx,jsx}": [
+      "eslint",
+      "prettier --write --ignore-unknown",
+      "git add"
+    ]
   }
 }
