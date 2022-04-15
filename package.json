@@ -18,7 +18,10 @@
   },
   "lint-staged": {
     "*.{html,vue,css,scss,sass,less}": "stylelint --fix",
-    "*.{vue,js,jsx,ts,tsx}": "eslint --fix"
+    "*.{vue,js,jsx,ts,tsx}": [
+      "yarn lint",
+      "yarn prettier"
+    ]
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
