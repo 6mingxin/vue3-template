@@ -7,7 +7,8 @@
     "dev": "vite",
     "preview": "vite preview",
     "lint": "eslint . --ext .js,.ts,.vue --ignore-path .gitignore",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettier": "npx prettier --write ."
   },
   "dependencies": {
     "axios": "^0.25.0",
@@ -17,10 +18,13 @@
     "vue-router": "4"
   },
   "lint-staged": {
-    "*.{html,vue,css,scss,sass,less}": "stylelint --fix",
-    "*.{vue,js,jsx,ts,tsx}": [
-      "yarn lint",
-      "yarn prettier"
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "npx prettier --write .",
+      "git add"
+    ],
+    "*.{js,jsx,tsx,ts,less,md,json}": [
+      "prettier --write"
     ]
   },
   "devDependencies": {
@@ -31,6 +35,9 @@
     "@vitejs/plugin-vue": "^2.2.0",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^10.0.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
     "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.20.2",
@@ -46,5 +53,10 @@
     "unplugin-vue-components": "^0.19.2",
     "vite": "^2.8.0",
     "vue-global-api": "^0.4.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
   }
 }
