@@ -32,10 +32,9 @@ axios.interceptors.response.use(
   },
   (error) => {
     if (error.response && error.response.data) {
-      const code = error.response.status
-      const msg = error.response.data.message
+      // const code = error.response.status
+      // const msg = error.response.data.message
       console.error(`[Axios Error]`, error.response)
-    } else {
     }
     return Promise.reject(error)
   }

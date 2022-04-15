@@ -1,6 +1,4 @@
-const { defineConfig } = require('eslint-define-config')
-
-module.exports = defineConfig({
+module.exports = {
   root: true,
 
   env: {
@@ -18,7 +16,7 @@ module.exports = defineConfig({
     'vue-global-api',
     // Use this if you are using Vue.js 2.x.
     'plugin:prettier/recommended',
-    'prettier', // 添加 prettier 插件
+    'prettier' // 添加 prettier 插件
   ],
   plugins: ['vue', '@typescript-eslint', 'prettier'],
 
@@ -35,8 +33,8 @@ module.exports = defineConfig({
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'vue/script-setup-uses-vars': 'error',
-    'no-console': import.meta.env.MODE === 'production' ? 'warn' : 'off',
-    'no-debugger': import.meta.env.MODE === 'production' ? 'warn' : 'off'
+    'no-console': 'off',
+    'no-debugger': 'off'
   },
 
   parser: 'vue-eslint-parser',
@@ -46,4 +44,4 @@ module.exports = defineConfig({
     ecmaVersion: 2020,
     sourceType: 'module'
   }
-})
+}

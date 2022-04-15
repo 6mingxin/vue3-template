@@ -23,7 +23,7 @@ export default defineConfig({
       imports: ['vue', 'vue-router', 'pinia'],
       // 可以选择auto-import.d.ts生成的位置，使用ts建议设置为'src/auto-import.d.ts'
       dts: 'src/auto-import.d.ts'
-    }),
+    })
     // gzip压缩 生产环境生成 .gz 文件
     // viteCompression({
     //   verbose: true,
@@ -58,10 +58,10 @@ export default defineConfig({
     terserOptions: {
       compress: {
         drop_console: true,
-        drop_debugger: true,
-      },
+        drop_debugger: true
+      }
     },
-    minify:'terser'
+    minify: 'terser'
   },
   lintOnSave: true,
   base: './', // 设置打包路径
@@ -69,16 +69,16 @@ export default defineConfig({
     port: 4000, // 设置服务启动端口号
     open: true, // 设置服务启动时是否自动打开浏览器
     cors: true, // 允许跨域
-    host: '0.0.0.0',
-  //   // https:true,
-  //   // 设置代理，根据我们项目实际情况配置
-  //   proxy: {
-  //     '/api': {
-  //       target: '',
-  //       changeOrigin: true,
-  //       secure: false,
-  //       rewrite: (path) => path.replace('/api/', '/api/')
-  //     }
-  //   }
+    host: '0.0.0.0'
+    //   // https:true,
+    //   // 设置代理，根据我们项目实际情况配置
+    //   proxy: {
+    //     '/api': {
+    //       target: '',
+    //       changeOrigin: true,
+    //       secure: false,
+    //       rewrite: (path) => path.replace('/api/', '/api/')
+    //     }
+    //   }
   }
 })

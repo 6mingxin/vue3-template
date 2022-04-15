@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
-
-node scripts/verifyCommit.js
+# git提交规范
+npx --no-install commitlint --edit
