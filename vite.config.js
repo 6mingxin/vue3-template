@@ -2,6 +2,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite' // 引入vue的hook
 import Components from 'unplugin-vue-components/vite' // 组件自动引入
+import { createHtmlPlugin } from 'vite-plugin-html'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { resolve } from 'path'
 //生产环境开启gzip
 //import viteCompression from 'vite-plugin-compression'
@@ -14,7 +16,7 @@ export default defineConfig({
       // 指定组件位置，默认是src/components
       dirs: ['src/components'],
       // ui库解析器
-      // resolvers: [ElementPlusResolver({})],//, VantResolver()
+      resolvers: [NaiveUiResolver()], //, VantResolver()
       extensions: ['vue'],
       // ts配置文件生成位置
       dts: 'src/components.d.ts',
@@ -23,6 +25,17 @@ export default defineConfig({
       imports: ['vue', 'vue-router', 'pinia'],
       // 可以选择auto-import.d.ts生成的位置，使用ts建议设置为'src/auto-import.d.ts'
       dts: 'src/auto-import.d.ts',
+    }),
+    createHtmlPlugin({
+      minify: true,
+      /**
+       * 需要注入 index.html ejs 模版的数据
+       */
+      inject: {
+        data: {
+          appName: 'Vue3后台模板TS版',
+        },
+      },
     }),
     // gzip压缩 生产环境生成 .gz 文件
     // viteCompression({
@@ -49,7 +62,8 @@ export default defineConfig({
 				'@import "@/assets/scss/globalVariable1.scss";@import "@/assets/scss/globalVariable2.scss";'
 				这种格式
 				 */
-        additionalData: '@import "@/style/main.scss";',
+
+        additionalData: `@use "./src/style/main.scss" as *;`,
       },
     },
   },
