@@ -6,7 +6,7 @@ module.exports = {
     browser: true,
     es2021: true,
     // 解决 defineProps and defineEmits generate no-undef warnings
-    'vue/setup-compiler-macros': true
+    'vue/setup-compiler-macros': true,
   },
   extends: [
     // add more generic rulesets here, such as:
@@ -16,7 +16,7 @@ module.exports = {
     'vue-global-api',
     // Use this if you are using Vue.js 2.x.
     'plugin:prettier/recommended',
-    'prettier' // 添加 prettier 插件
+    'prettier', // 添加 prettier 插件
   ],
   plugins: ['vue', '@typescript-eslint', 'prettier'],
 
@@ -34,7 +34,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'vue/script-setup-uses-vars': 'error',
     'no-console': 'off',
-    'no-debugger': 'off'
+    'no-debugger': 'off',
   },
 
   parser: 'vue-eslint-parser',
@@ -42,6 +42,6 @@ module.exports = {
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 2020,
-    sourceType: 'module'
-  }
+    sourceType: 'module',
+  },
 }

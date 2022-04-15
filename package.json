@@ -18,14 +18,7 @@
     "vue-router": "4"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "npx prettier --write .",
-      "git add"
-    ],
-    "*.{js,jsx,tsx,ts,less,md,json}": [
-      "prettier --write"
-    ]
+    "*.{js,jsx,ts,tsx}": "eslint --fix"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",

@@ -2,8 +2,8 @@
 defineProps({
   msg: {
     type: String,
-    default: ''
-  }
+    default: '',
+  },
 })
 const count = ref(0)
 </script>
