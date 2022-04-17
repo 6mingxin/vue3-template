@@ -1,20 +1,18 @@
 <script setup lang="ts">
 import { NConfigProvider, GlobalThemeOverrides } from 'naive-ui'
+import layout from '@/layout/layout.vue'
 
-const themeOverrides: GlobalThemeOverrides = {
-  common: {
-    primaryColor: '#FF0000',
-  },
-  Button: {
-    textColor: '#FF0000',
-  },
-}
+const themeOverrides: GlobalThemeOverrides = {}
 </script>
 
 <template>
   <n-config-provider :theme-overrides="themeOverrides">
-    <router-view></router-view>
+    <n-loading-bar-provider>
+      <layout></layout>
+    </n-loading-bar-provider>
   </n-config-provider>
 </template>
 
-<style></style>
+<style lang="scss">
+@import url('@/style/base.scss');
+</style>
