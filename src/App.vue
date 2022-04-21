@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NConfigProvider, GlobalThemeOverrides } from 'naive-ui'
+import { GlobalThemeOverrides } from 'naive-ui'
 import layout from '@/layout/layout.vue'
 
 const themeOverrides: GlobalThemeOverrides = {}
@@ -7,9 +7,9 @@ const themeOverrides: GlobalThemeOverrides = {}
 
 <template>
   <n-config-provider :theme-overrides="themeOverrides">
-    <n-loading-bar-provider>
+    <app-provider>
       <layout></layout>
-    </n-loading-bar-provider>
+    </app-provider>
   </n-config-provider>
 </template>
 

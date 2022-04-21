@@ -4,9 +4,11 @@
       <div v-if="app.siderCollapse" class="iconfont icon-nav-collapsed"></div>
       <div v-else class="iconfont icon-nav-collapse"></div>
     </hover-container>
+    <Breadcrumb></Breadcrumb>
   </div>
 </template>
 <script lang="ts" setup>
+import Breadcrumb from './components/Breadcrumb.vue'
 import { useAppStore } from '@/store/app'
 const app = useAppStore()
 </script>

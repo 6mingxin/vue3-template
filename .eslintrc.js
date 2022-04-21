@@ -13,10 +13,11 @@ module.exports = {
     'eslint:recommended',
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended', // typescript-eslint推荐规则,
-    'vue-global-api',
     // Use this if you are using Vue.js 2.x.
     'plugin:prettier/recommended',
     'prettier', // 添加 prettier 插件
+    'vue-global-api',
+    './.eslintrc-auto-import.json', //解决auto-import自动引入后，eslint的报错
   ],
   plugins: ['vue', '@typescript-eslint', 'prettier'],
 
@@ -44,4 +45,18 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
+  overrides: [
+    {
+      files: ['*.vue'],
+      rules: {
+        'no-undef': 'off',
+      },
+    },
+    {
+      files: ['*.html'],
+      rules: {
+        'vue/comment-directive': 'off',
+      },
+    },
+  ],
 }

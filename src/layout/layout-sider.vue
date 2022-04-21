@@ -31,7 +31,8 @@
 <script lang="ts" setup>
 import { useAppStore } from '@/store/app'
 import type { MenuOption } from 'naive-ui'
-import { useLoadingBar } from 'naive-ui'
+const r = useRoute()
+const re = useRouter()
 
 const app = useAppStore()
 const collapsed = computed(() => {
@@ -40,24 +41,17 @@ const collapsed = computed(() => {
 })
 const showTitle = ref(true)
 const checked = ref('narrator')
-const loadingBar = useLoadingBar()
+
 const onCollapsed = (status: boolean): void => {
   app.toggleSiderCollapse()
 }
 
 const renderMenuIcon = (option: MenuOption) => {
-  console.log(option)
-
   return h('div', { class: 'iconfont icon-delPic' })
 }
 const afterEnter = () => (showTitle.value = true)
 const onChange = (key: string, item: MenuOption) => {
-  console.log(key, item)
   checked.value = key
-  loadingBar.start()
-  setTimeout(() => {
-    loadingBar.finish()
-  }, 1000)
 }
 const menuOptions: MenuOption[] = [
   {
