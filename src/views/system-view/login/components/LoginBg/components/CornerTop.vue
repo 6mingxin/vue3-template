@@ -21,14 +21,14 @@
 <script lang="ts" setup>
 interface Props {
   /** 过渡的开始颜色 */
-  startColor?: string;
+  startColor?: string
   /** 过渡的结束颜色 */
-  endColor?: string;
+  endColor?: string
 }
 
 withDefaults(defineProps<Props>(), {
   startColor: '#28aff0',
-  endColor: '#120fc4'
-});
+  endColor: '#120fc4',
+})
 </script>
 <style scoped></style>

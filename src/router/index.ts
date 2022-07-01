@@ -4,9 +4,9 @@ import { constantRoutes } from './default'
 import type { App } from 'vue'
 import { createRouterGuard } from './guard'
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHashHistory(),
-  routes: [],
+  routes: constantRoutes,
 })
 
 export async function setupRouter(app: App) {
@@ -15,4 +15,4 @@ export async function setupRouter(app: App) {
   await router.isReady() //路由是否挂载完成
 }
 
-export default setupRouter
+export * from './routerFun'

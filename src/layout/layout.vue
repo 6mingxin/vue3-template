@@ -1,18 +1,18 @@
 <template>
   <n-layout has-sider>
-    <layout-sider />
+    <LayoutSider></LayoutSider>
     <div class="mian">
-      <layout-header></layout-header>
-      <layout-tab></layout-tab>
-      <layout-content> </layout-content>
+      <LayoutHeader></LayoutHeader>
+      <LayoutTab></LayoutTab>
+      <LayoutContent style="flex: 1; overflow: hidden"> </LayoutContent>
     </div>
   </n-layout>
 </template>
 <script lang="ts" setup>
-import layoutHeader from '@/layout/layout-header.vue'
-import layoutContent from '@/layout/layout-content.vue'
-import layoutSider from '@/layout/layout-sider.vue'
-import layoutTab from '@/layout/layout-tab.vue'
+import LayoutHeader from '@/layout/components/LayoutHeader.vue'
+import LayoutContent from '@/layout/components/LayoutContent.vue'
+import LayoutSider from '@/layout/components/LayoutSider.vue'
+import LayoutTab from '@/layout/components/LayoutTab.vue'
 </script>
 <style lang="scss">
 .layout {
@@ -24,5 +24,7 @@ import layoutTab from '@/layout/layout-tab.vue'
   flex: 1;
   overflow: hidden;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 </style>

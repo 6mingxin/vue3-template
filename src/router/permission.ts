@@ -1,29 +1,40 @@
 import type { Router, RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 import { useRouteStore } from '@/store'
 // import { routeName } from '@/router';
-// import { useAuthStore } from '@/store';
+import { useAuthStore } from '@/store'
 import { exeStrategyActions, getToken } from '@/utils'
 
-// import { createDynamicRouteGuard } from './dynamic';
+import { createDynamicRouteGuard } from './dynamic'
 
 /** 处理路由页面的权限 */
 export async function createPermissionGuard(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext, router: Router) {
   // 动态路由
   const route = useRouteStore()
-  const permission = await route.initAuthRoute(router)
-  if (!permission) return
+  const [permission, isInitedAuthRoute] = await createDynamicRouteGuard(to, from, next, router)
+  const auth = useAuthStore()
+  const isLogin = Boolean(getToken())
+  // const isLogin = true
+  const needLogin = Boolean(to.meta?.requiresAuth)
+  // const hasPermission = !permissions.length || permissions.includes(auth.userInfo.userRole)
+  console.log('路由参数', isLogin, needLogin, permission, isInitedAuthRoute)
+
+  //动态路由挂载完成，去路由地址的页面
+  if (!permission && isInitedAuthRoute && (!needLogin || isLogin)) {
+    console.log('to', to)
+
+    next({ ...to, replace: true })
+    return
+  }
+  // 如果当前路由挂载失败了或者在这次路由跳转之前路由就挂载完成了，不在执行下面的代码
+  if (!permission && !isInitedAuthRoute) return
 
   // 外链路由, 从新标签打开，返回上一个路由
   if (to.meta.href) {
     window.open(to.meta.href as string | URL | undefined)
     next({ path: from.fullPath, replace: true, query: from.query })
+
     return
   }
-
-  // const auth = useAuthStore()
-  const isLogin = Boolean(getToken())
-  const needLogin = Boolean(to.meta?.requiresAuth)
-  // const hasPermission = !permissions.length || permissions.includes(auth.userInfo.userRole)
 
   const actions: Common.StrategyAction[] = [
     // 已登录状态跳转登录页，跳转至首页
@@ -50,7 +61,7 @@ export async function createPermissionGuard(to: RouteLocationNormalized, from: R
     ],
     // 登录状态进入需要登录权限的页面，有权限直接通行
     [
-      isLogin && needLogin,
+      isLogin,
       () => {
         next()
       },

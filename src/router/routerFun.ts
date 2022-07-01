@@ -19,7 +19,6 @@ export function routePath(key: string) {
  * @returns
  */
 export function handleRouter(routers: Route[]) {
-  console.log(views)
   let routes: RouteRecordRaw[] = []
   // addRoute
   routes = routers.map(e => {
@@ -27,6 +26,5 @@ export function handleRouter(routers: Route[]) {
     if (e.children && e.children.length) handleRouter(e.children)
     return e as RouteRecordRaw
   })
-  console.log(routers)
   return routes
 }

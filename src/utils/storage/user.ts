@@ -1,6 +1,5 @@
 import { EnumStorageKey } from '@/enum'
 import { setLocal, getLocal, removeLocal } from '../storage'
-import { userInfo } from '@/type/auth'
 
 /** 设置token */
 export function setToken(token: string) {
@@ -34,18 +33,18 @@ export function removeRefreshToken() {
 
 /** 获取用户信息 */
 export function getUserInfo() {
-  const emptyInfo: userInfo = {
+  const emptyInfo: Auth.UserInfo = {
     userId: '',
     userName: '',
     userPhone: '',
     userRole: 'test',
   }
-  const userInfo: userInfo = getLocal<userInfo>(EnumStorageKey['user-info']) || emptyInfo
+  const userInfo: Auth.UserInfo = getLocal<Auth.UserInfo>(EnumStorageKey['user-info']) || emptyInfo
   return userInfo
 }
 
 /** 设置用户信息 */
-export function setUserInfo(userInfo: userInfo) {
+export function setUserInfo(userInfo: Auth.UserInfo) {
   setLocal(EnumStorageKey['user-info'], userInfo)
 }
 

@@ -1,17 +1,17 @@
 <template>
-  <div class="relative flex-center wh-full" :style="{ backgroundColor: bgColor }">
-    <dark-mode-switch :dark="theme.darkMode" class="absolute left-48px top-24px z-3 text-20px" @update:dark="theme.setDarkMode" />
-    <n-card :bordered="false" size="large" class="z-4 !w-auto rounded-20px shadow-sm">
-      <div class="w-360px">
-        <header class="flex-y-center justify-between">
-          <div class="w-70px h-70px rounded-35px overflow-hidden">
+  <div class="login">
+    <!-- <dark-mode-switch  class="absolute left-48px top-24px z-3 text-20px" /> -->
+    <n-card :bordered="false" size="large" class="login-card">
+      <div class="login-box">
+        <header class="login-header">
+          <!-- <div class="w-70px h-70px rounded-35px overflow-hidden">
             <system-logo class="text-70px text-primary" :fill="true" />
-          </div>
-          <n-gradient-text type="primary" :size="28">{{ title }}</n-gradient-text>
+          </div> -->
+          <n-gradient-text type="primary" :size="28">{{ 'Vue3后台模板' }}</n-gradient-text>
         </header>
-        <main class="pt-24px">
-          <h3 class="text-18px text-primary font-medium">{{ activeModule.label }}</h3>
-          <div class="pt-24px">
+        <main class="login-main">
+          <h3 class="login-main__label">{{ activeModule.label }}</h3>
+          <div class="login-main__form">
             <transition name="fade-slide" mode="out-in" appear>
               <component :is="activeModule.component" />
             </transition>
@@ -27,50 +27,88 @@
 import { computed } from 'vue'
 import type { Component } from 'vue'
 // import { EnumLoginModule } from '@/enum'
-// import { useThemeStore } from '@/store'
+import { useAppStore } from '@/store'
 // import { useAppInfo } from '@/composables'
-// import { getColorPalette, mixColor } from '@/utils'
-import { LoginBg, PwdLogin, CodeLogin, Register, ResetPwd, BindWechat } from './components'
+import { getColorPalette, mixColor } from '@/utils'
+import { LoginBg, PwdLogin, Register } from './components'
 
-interface Props {
-  /** 登录模块分类 */
-  module: EnumType.LoginModuleKey
-}
+// interface Props {
+//   /** 登录模块分类 */
+//   module: string
+// }
 
-interface LoginModule {
-  key: EnumType.LoginModuleKey
-  label: EnumLoginModule
-  component: Component
-}
+// interface LoginModule {
+//   key: EnumType.LoginModuleKey
+//   label: EnumLoginModule
+//   component: Component
+// }
 
-const props = defineProps<Props>()
+// const props = defineProps<Props>()
+const route = useRoute()
+console.log('当前路由信息', route.params)
+const theme = useAppStore()
+// const { title } = useAppInfo()
 
-const theme = useThemeStore()
-const { title } = useAppInfo()
-
-const modules: LoginModule[] = [
-  { key: 'pwd-login', label: EnumLoginModule['pwd-login'], component: PwdLogin },
-  { key: 'code-login', label: EnumLoginModule['code-login'], component: CodeLogin },
-  { key: 'register', label: EnumLoginModule.register, component: Register },
-  { key: 'reset-pwd', label: EnumLoginModule['reset-pwd'], component: ResetPwd },
-  { key: 'bind-wechat', label: EnumLoginModule['bind-wechat'], component: BindWechat },
+const modules = [
+  { key: 'pwd-login', label: '账号登录', component: PwdLogin },
+  // { key: 'code-login', label: 'code-login', component: CodeLogin },
+  { key: 'register', label: '账号注册', component: Register },
+  // { key: 'reset-pwd', label: 'reset-pwd', component: ResetPwd },
+  // { key: 'bind-wechat', label: 'bind-wechat', component: BindWechat },
 ]
 
 const activeModule = computed(() => {
-  const active: LoginModule = { ...modules[0] }
-  const findItem = modules.find(item => item.key === props.module)
+  const active = { ...modules[0] }
+  const module = route.params.module
+  const findItem = modules.find(item => item.key === module)
   if (findItem) {
     Object.assign(active, findItem)
   }
   return active
 })
 
-const bgThemeColor = computed(() => (theme.darkMode ? getColorPalette(theme.themeColor, 7) : theme.themeColor))
+const bgThemeColor = computed(() => (theme.inverted ? getColorPalette(theme.themeColor, 7) : theme.themeColor))
 
 const bgColor = computed(() => {
   const COLOR_WHITE = '#ffffff'
-  const ratio = theme.darkMode ? 0.5 : 0.2
+  const ratio = theme.inverted ? 0.5 : 0.2
   return mixColor(COLOR_WHITE, theme.themeColor, ratio)
 })
 </script>
-<style scoped></style>
+<style scoped lang="scss">
+.login {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &-card {
+    z-index: 4;
+    width: auto !important;
+    border-radius: 20px;
+    box-shadow: var(--n-box-shadow);
+  }
+  &-box {
+    width: 360px;
+  }
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &-main {
+    padding-top: 24px;
+    &__label {
+      color: var(--primary-color);
+      margin: 0;
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 500;
+    }
+    &__form {
+      padding-top: 24px;
+    }
+  }
+}
+</style>

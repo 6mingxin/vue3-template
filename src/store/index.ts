@@ -8,3 +8,5 @@ export function setupStore(app: App) {
 
 export * from './app'
 export * from './route'
+export * from './tabs'
+export * from './auth'

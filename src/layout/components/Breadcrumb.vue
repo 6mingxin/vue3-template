@@ -1,15 +1,15 @@
 <template>
-  <n-breadcrumb class="px-12px">
+  <n-breadcrumb>
     <template v-for="breadcrumb in breadcrumbs" :key="breadcrumb.key">
       <n-breadcrumb-item>
-        <n-dropdown v-if="breadcrumb.hasChildren" :options="breadcrumb.children">
+        <n-dropdown v-if="breadcrumb.hasChildren" :options="breadcrumb.children" @select="dropdownSelect">
           <span>
-            <component :is="breadcrumb.icon" class="inline-block align-text-bottom mr-4px text-16px" />
+            <component :is="breadcrumb.icon" class="breadcrumb-icon" />
             <span>{{ breadcrumb.label }}</span>
           </span>
         </n-dropdown>
         <template v-else>
-          <component :is="breadcrumb.icon" class="inline-block align-text-bottom mr-4px text-16px" />
+          <component :is="breadcrumb.icon" class="breadcrumb-icon" />
           <span>{{ breadcrumb.label }}</span>
         </template>
       </n-breadcrumb-item>
@@ -18,20 +18,21 @@
 </template>
 
 <script setup lang="ts">
-// import { useThemeStore, useRouteStore } from '@/store';
-// import { useRouterPush } from '@/composables';
-import { getBreadcrumbByRouteKey } from '@/utils/breadcrumb'
-// import { routePath } from '@/router/index'
+import { useRouteStore } from '@/store'
+import { getBreadcrumbByRouteKey } from '@/utils'
 const route = useRoute()
-// const theme = useThemeStore()
-// const routeStore = useRouteStore()
-// const { routerPush } = useRouterPush()
-console.log('路由数据', route)
-const breadcrumbs: GlobalBreadcrumb[] = []
-// const breadcrumbs = computed(() => getBreadcrumbByRouteKey(route.name as string, routeStore.menus as GlobalMenuOption[], routePath('root')))
+const router = useRouter()
+const routeStore = useRouteStore()
+const breadcrumbs = computed(() => getBreadcrumbByRouteKey(route.name as string, routeStore.menus as GlobalMenuOption[], '/'))
 
-// function dropdownSelect(key: string) {
-//   routerPush({ name: key })
-// }
+const dropdownSelect = (key: string) => router.push({ name: key })
 </script>
-<style scoped></style>
+<style scoped lang="scss">
+.breadcrumb-icon {
+  display: inline-block;
+  margin-right: 4px;
+  font-size: 16px;
+  line-height: 1;
+  vertical-align: text-bottom;
+}
+</style>

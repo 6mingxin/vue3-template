@@ -1,27 +1,47 @@
 <template>
-  <div class="absolute-lt z-1 wh-full overflow-hidden">
-    <div class="absolute -right-300px -top-900px">
+  <div class="login-bg">
+    <div class="login-bg__top">
       <corner-top :start-color="lightColor" :end-color="darkColor" />
     </div>
-    <div class="absolute -left-200px -bottom-400px">
+    <div class="login-bg__bottom">
       <corner-bottom :start-color="darkColor" :end-color="lightColor" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { getColorPalette } from '@/utils';
-import { CornerTop, CornerBottom } from './components';
+import { computed } from 'vue'
+import { getColorPalette } from '@/utils'
+import { CornerTop, CornerBottom } from './components'
 
 interface Props {
   /** 主题颜色 */
-  themeColor: string;
+  themeColor: string
 }
 
-const props = defineProps<Props>();
+const props = defineProps<Props>()
 
-const lightColor = computed(() => getColorPalette(props.themeColor, 3));
-const darkColor = computed(() => getColorPalette(props.themeColor, 6));
+const lightColor = computed(() => getColorPalette(props.themeColor, 3))
+const darkColor = computed(() => getColorPalette(props.themeColor, 6))
 </script>
-<style scoped></style>
+<style scoped lang="scss">
+.login-bg {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  &__top {
+    position: absolute;
+    top: -900px;
+    right: -300px;
+  }
+  &__bottom {
+    position: absolute;
+    bottom: -400px;
+    left: -200px;
+  }
+}
+</style>

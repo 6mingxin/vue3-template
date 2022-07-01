@@ -35,8 +35,10 @@ const showTooltip = computed(() => Boolean(props.tooltipContent))
 .tooltip {
   height: 100%;
   cursor: pointer;
+  transition: background-color 0.3s;
   &:hover {
-    background-color: #f6f6f6;
+    background-color: var(--n-color);
+    filter: contrast(90%);
   }
 }
 </style>

@@ -2,8 +2,9 @@ import type { Router } from 'vue-router'
 import { defineStore } from 'pinia'
 import { constantRoutes } from '@/router/dynamic-router'
 import { handleRouter } from '@/router/routerFun'
+import { useTabStore } from './tabs'
 // import { fetchUserRoutes } from '@/service'
-import { getUserInfo } from '@/utils'
+import { getUserInfo, transformAuthRouteToMenu } from '@/utils'
 // import { useTabStore } from '../tab'
 
 interface RouteState {
@@ -34,13 +35,14 @@ export const useRouteStore = defineStore('route-store', {
      * @param router - 路由实例
      */
     handleAuthRoutes(routes: Route[], router: Router) {
-      // this.menus = transformAuthRouteToMenu(routes)
+      this.menus = transformAuthRouteToMenu(routes)
       // this.searchMenus = transformAuthRoutesToSearchMenus(routes)
 
-      console.log(routes)
       const vueRoutes = handleRouter(routes)
+
       vueRoutes.forEach(route => {
         router.addRoute(route)
+        router.options.routes.push(route)
       })
       // this.cacheRoutes = getCacheRoutes(vueRoutes)
     },
@@ -49,10 +51,9 @@ export const useRouteStore = defineStore('route-store', {
      * @param router - 路由实例
      */
     async initDynamicRoute(router: Router) {
-      // const { userId } = getUserInfo()
+      const { userId } = getUserInfo()
       // const { data } = await fetchUserRoutes(userId)
       const data = constantRoutes
-      console.log('initDynamicRoute', data)
 
       if (data) {
         this.handleAuthRoutes(data, router)
@@ -63,18 +64,16 @@ export const useRouteStore = defineStore('route-store', {
      * @param router - 路由实例
      */
     async initAuthRoute(router: Router) {
-      console.log('initAuthRoute')
-
-      // const { initHomeTab } = useTabStore()
-      // const { userId } = getUserInfo()
-      // if (!userId) return false
+      const { initHomeTab } = useTabStore()
+      const { userId } = getUserInfo()
+      if (!userId) return false
       try {
         await this.initDynamicRoute(router)
       } catch (error) {
         return false
       }
 
-      // initHomeTab(this.routeHomeName, router)
+      initHomeTab(this.routeHomeName, router)
       this.isInitedAuthRoute = true
       return true
     },
