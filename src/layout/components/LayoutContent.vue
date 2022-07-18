@@ -2,15 +2,18 @@
   <n-layout-content content-style="padding: 16px;" :class="inverted ? 'content-bg--dark' : 'content-bg'">
     <router-view v-slot="{ Component, route }">
       <transition name="fade-slide" mode="out-in" appear>
-        <component :is="Component" :key="route.path" />
+        <keep-alive :include="routeStore.cacheRoutes">
+          <component :is="Component" :key="route.path" />
+        </keep-alive>
       </transition>
     </router-view>
   </n-layout-content>
 </template>
 <script lang="ts" setup>
-import { useAppStore } from '@/store'
+import { useAppStore, useRouteStore } from '@/store'
 
 const app = useAppStore()
+const routeStore = useRouteStore()
 const inverted = computed(() => app.inverted)
 </script>
 <style lang="scss">

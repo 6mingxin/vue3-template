@@ -36,6 +36,7 @@ module.exports = {
     'vue/script-setup-uses-vars': 'error',
     'no-console': 'off',
     'no-debugger': 'off',
+    'vue/multi-word-component-names': 'off',
   },
 
   parser: 'vue-eslint-parser',

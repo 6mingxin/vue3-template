@@ -5,7 +5,7 @@
       <icon-custom-not-found v-if="type === '404'" />
       <icon-custom-service-error v-if="type === '500'" /> -->
     </div>
-    <router-link :to="{ name: '/' }">
+    <router-link :to="{ path: '/' }">
       <n-button type="primary">回到首页</n-button>
     </router-link>
   </div>
