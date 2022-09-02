@@ -5,45 +5,62 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "lint": "eslint --ext .js,.vue,test/ src/",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js,.ts,.vue --ignore-path .gitignore",
     "prepare": "husky install",
-    "preview": "vite preview"
+    "prettier": "npx prettier --write ."
   },
   "dependencies": {
+    "@antv/g2plot": "^2.4.16",
+    "@better-scroll/core": "2.4.2",
+    "@vueuse/core": "^8.7.5",
+    "@vueuse/integrations": "^8.7.5",
     "axios": "^0.25.0",
-    "eslint": "^8.9.0",
-    "eslint-plugin-vue": "^8.4.1",
+    "colord": "^2.9.2",
+    "crypto-js": "^4.1.1",
     "pinia": "^2.0.11",
+    "print-js": "^1.6.0",
+    "typescript": "^4.6.3",
+    "ua-parser-js": "^1.0.2",
     "vue": "^3.2.25",
     "vue-router": "4"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --fix"
+  },
   "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@types/crypto-js": "^4.1.1",
+    "@types/ua-parser-js": "^0.7.36",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
     "@vitejs/plugin-vue": "^2.2.0",
-    "@vue/eslint-config-airbnb": "^5.0.2",
-    "eslint": "^6.7.2",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^10.0.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
+    "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^7.0.0",
+    "eslint-plugin-vue": "^8.6.0",
     "husky": "^7.0.0",
-    "lint-staged": "^9.5.0",
+    "lint-staged": "^12.3.7",
+    "naive-ui": "^2.28.0",
     "prettier": "^2.5.1",
     "sass": "^1.49.7",
     "unplugin-auto-import": "^0.5.11",
+    "unplugin-vue-components": "^0.19.2",
+    "vfonts": "0.0.3",
     "vite": "^2.8.0",
+    "vite-plugin-html": "^3.2.0",
     "vue-global-api": "^0.4.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "FORCE_COLOR=1 node script/verify-commit.js",
-      "pre-push": "npm test"
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
     }
-  },
-  "lint-staged": {
-    "src/**/*.{js,.vue}": "eslint",
-    "test/**/*.{js,.vue}": "eslint",
-    "*.css": "stylelint",
-    "*.html": "htmlhint"
   }
 }

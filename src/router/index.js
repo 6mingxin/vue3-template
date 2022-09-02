@@ -1,10 +1,18 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { handleRouter } from './routerFun'
+import { constantRoutes } from './default'
 
-const routes = []
+import { createRouterGuard } from './guard'
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes: constantRoutes,
 })
 
-export default router
+export async function setupRouter(app) {
+  app.use(router)
+  createRouterGuard(router) //路由守卫
+  await router.isReady() //路由是否挂载完成
+}
+
+export * from './routerFun'

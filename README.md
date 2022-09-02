@@ -5,3 +5,9 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 ## Recommended IDE Setup
 
 - [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+
+### Eslint Prettire TS
+
+> yarn add eslint eslint-plugin-vue eslint-define-config --dev # eslink
+> yarn add prettier eslint-plugin-prettier @vue/eslint-config-prettier --dev# prettire
+> yarn add @vue/eslint-config-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser --dev # 对 ts 的支持

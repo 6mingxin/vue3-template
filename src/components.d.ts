@@ -5,10 +5,10 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AppProvider: typeof import('./components/AppProvider.vue')['default']
     BetterScroll: typeof import('./components/BetterScroll.vue')['default']
     ContextMenu: typeof import('./components/ContextMenu.vue')['default']
     CountTo: typeof import('./components/CountTo.vue')['default']
-    HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     HoverContainer: typeof import('./components/HoverContainer.vue')['default']
     NBreadcrumb: typeof import('naive-ui')['NBreadcrumb']
     NBreadcrumbItem: typeof import('naive-ui')['NBreadcrumbItem']
