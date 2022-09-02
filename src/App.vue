@@ -1,22 +1,27 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-const msg = ref('Hello Vue 3 + Vite')
+import { darkTheme } from 'naive-ui'
+import { useAppStore } from './store'
+import { zhCN, dateZhCN } from 'naive-ui'
+const app = useAppStore()
+const theme = computed(() => {
+  return app.inverted ? darkTheme : null
+})
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld :msg="msg" />
+  <n-config-provider class="app" :locale="zhCN" :date-locale="dateZhCN" :theme-overrides="app.naiveThemeOverrides" :theme="theme">
+    <app-provider>
+      <router-view />
+    </app-provider>
+  </n-config-provider>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+<style lang="scss">
+@import url('@/style/base.scss');
+@import url('@/assets/iconfont/iconfont.css');
+
+.app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
