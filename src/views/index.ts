@@ -24,6 +24,8 @@ function getViewComponent() {
     const routeKey = key.replace(PREFIX, '').replace(SUFFIX, '').replace(new RegExp(PATH_SPLIT_MARK, 'g'), ROUTE_KEY_SPLIT_MARK).replace(SYSTEM_VIEW, '')
     components[routeKey] = importViews[key]
   })
+  console.log(components)
+
   return components
 }
 // 1.获取所有views文件夹下的文件   importViews

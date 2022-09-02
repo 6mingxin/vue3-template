@@ -43,4 +43,22 @@ export const constantRoutes: Route[] = [
       },
     ],
   },
+  {
+    name: 'system-setting',
+    path: '/system-setting',
+    meta: {
+      title: '系统设置',
+      icon: 'icon-igw-l-dashboard-rectangle-add',
+    },
+    children: [
+      {
+        name: 'system-setting_personnel',
+        path: '/system-setting/personnel',
+        meta: {
+          title: '人员管理',
+          icon: 'icon-fuwenbenbianjiqi_biaoge',
+        },
+      },
+    ],
+  },
 ]
