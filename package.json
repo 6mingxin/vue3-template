@@ -14,6 +14,7 @@
     "@antv/g2plot": "^2.4.16",
     "@better-scroll/core": "2.4.2",
     "@vueuse/core": "^8.7.5",
+    "@vueuse/integrations": "^8.7.5",
     "axios": "^0.25.0",
     "colord": "^2.9.2",
     "crypto-js": "^4.1.1",

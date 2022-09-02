@@ -4,7 +4,7 @@ import { constantRoutes } from '@/router/dynamic-router'
 import { handleRouter } from '@/router/routerFun'
 import { useTabStore } from './tabs'
 // import { fetchUserRoutes } from '@/service'
-import { getUserInfo, transformAuthRouteToMenu } from '@/utils'
+import { getUserInfo, transformAuthRouteToMenu, getCacheRoutes } from '@/utils'
 // import { useTabStore } from '../tab'
 
 interface RouteState {
@@ -44,7 +44,7 @@ export const useRouteStore = defineStore('route-store', {
         router.addRoute(route)
         router.options.routes.push(route)
       })
-      // this.cacheRoutes = getCacheRoutes(vueRoutes)
+      this.cacheRoutes = getCacheRoutes(vueRoutes)
     },
     /**
      * 初始化动态路由

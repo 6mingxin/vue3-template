@@ -37,8 +37,18 @@ export const constantRoutes: Route[] = [
         name: 'example_print',
         path: '/example/print',
         meta: {
+          keepAlive: true,
           title: '打印',
           icon: 'icon-a-83-dayin',
+        },
+      },
+      {
+        name: 'example_edit',
+        path: '/example/edit',
+        meta: {
+          title: '编辑',
+          icon: 'icon-a-83-dayin',
+          hide: true,
         },
       },
     ],

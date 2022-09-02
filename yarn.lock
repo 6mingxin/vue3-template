@@ -770,13 +770,22 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.33.tgz#69a8c99ceb37c1b031d5cc4aec2ff1dc77e1161e"
   integrity sha512-UBc1Pg1T3yZ97vsA2ueER0F6GbJebLHYlEi4ou1H5YL4KWvMOOWwpYo9/QpWq93wxKG6Wo13IY74Hcn/f7c7Bg==
 
-"@vueuse/core@^8.7.5":
+"@vueuse/core@8.7.5", "@vueuse/core@^8.7.5":
   version "8.7.5"
   resolved "https://registry.npmmirror.com/@vueuse/core/-/core-8.7.5.tgz#e74a888251ea11a9d432068ce18cbdfc4f810251"
   integrity sha512-tqgzeZGoZcXzoit4kOGLWJibDMLp0vdm6ZO41SSUQhkhtrPhAg6dbIEPiahhUu6sZAmSYvVrZgEr5aKD51nrLA==
   dependencies:
     "@types/web-bluetooth" "^0.0.14"
     "@vueuse/metadata" "8.7.5"
+    "@vueuse/shared" "8.7.5"
+    vue-demi "*"
+
+"@vueuse/integrations@^8.7.5":
+  version "8.7.5"
+  resolved "https://registry.npmmirror.com/@vueuse/integrations/-/integrations-8.7.5.tgz#a47f78d964939c3ac4070088e67883fb3c8ca77a"
+  integrity sha512-1vCOriEXhthpU9zczTqtG4a+YJFgkyUbK/Cc91Ey0VOdL6saMNjLsrGX7cae6troFyDCbF61eL6Y8epsNc3TXw==
+  dependencies:
+    "@vueuse/core" "8.7.5"
     "@vueuse/shared" "8.7.5"
     vue-demi "*"
 

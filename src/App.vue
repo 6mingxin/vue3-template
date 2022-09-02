@@ -2,6 +2,7 @@
 import { darkTheme } from 'naive-ui'
 import { useAppStore } from './store'
 import { zhCN, dateZhCN } from 'naive-ui'
+
 const app = useAppStore()
 const theme = computed(() => {
   return app.inverted ? darkTheme : null

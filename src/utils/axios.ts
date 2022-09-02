@@ -1,6 +1,6 @@
-import Axios from 'axios'
-
-const baseURL = window.location.href
+import { useAxios } from '@vueuse/integrations/useAxios'
+import Axios, { AxiosRequestConfig } from 'axios'
+const baseURL = ''
 
 const axios = Axios.create({
   baseURL,
@@ -14,6 +14,9 @@ axios.interceptors.request.use(
      * 根据你的项目实际情况来对 config 做处理
      * 这里对 config 不做任何处理，直接返回
      */
+    response.headers = {
+      accesstoken: '',
+    }
     return response
   },
   error => {
@@ -28,6 +31,11 @@ axios.interceptors.response.use(
      * 根据你的项目实际情况来对 response 和 error 做处理
      * 这里对 response 和 error 不做任何处理，直接返回
      */
+    if (!response.data.success) {
+      window.$message?.error(response.data.description)
+      return Promise.reject(response.data)
+    }
+
     return response
   },
   error => {
@@ -39,5 +47,5 @@ axios.interceptors.response.use(
     return Promise.reject(error)
   },
 )
-
-export default axios
+const useHttps = (url: string, options: AxiosRequestConfig) => useAxios(url, options, axios)
+export default useHttps
